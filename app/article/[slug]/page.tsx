@@ -83,7 +83,7 @@ export async function generateStaticParams() {
 
   return fs
     .readdirSync(dir)
-    .filter((f: string) => f.endsWith(".json") && f !== "article-example.json")
+    .filter((f: string) => f.endsWith(".json") && f !== "article-example.json" && f !== "article-sidebar.json")
     .map((f: string) => ({ slug: f.replace(".json", "") }));
 }
 
