@@ -1,0 +1,50 @@
+{
+  "slug": "taylor-swift-surprise-album-drop",
+  "category": "Hot",
+  "title": "Taylor Swift Surprise Album Breaks Spotify's Single-Day Record",
+  "introText": "Taylor Swift has released a surprise album that shattered Spotify's single-day streaming record. 'Midnight Revisions' was streamed over 500 million times in 24 hours, cementing Swift's dominance in the music industry.",
+  "readingTime": "6 Min Read",
+  "author": {
+    "name": "Jessica Adams",
+    "role": "Music Industry Editor",
+    "image": "/images/news/author-woman-1.webp"
+  },
+  "lastUpdated": "December 17, 2025",
+  "content": [
+    {
+      "type": "image",
+      "content": "Taylor Swift breaks streaming record",
+      "imageUrl": "/images/news/concert-music.webp",
+      "imageAlt": "Concert performance"
+    },
+    {
+      "type": "heading",
+      "content": "Record-Breaking Release",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "content": "Swift announced 'Midnight Revisions' at midnight via social media, generating 500 million Spotify streams in 24 hours. The album simultaneously topped charts in 92 countries."
+    },
+    {
+      "type": "heading",
+      "content": "Fan Frenzy",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "content": "Swifties crashed multiple platforms attempting to access the album. Merchandise sold out within minutes. The surprise release strategy has become Swift's signature move."
+    },
+    {
+      "type": "heading",
+      "content": "Industry Impact",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "content": "The release demonstrates Swift's unmatched ability to command attention in a fragmented media landscape. Other artists are studying her direct-to-fan approach."
+    }
+  ],
+  "bookmarked": false
+}
+

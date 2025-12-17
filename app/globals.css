@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #ffffff;
+  color: #171717;
+}
+
+/* Hide scrollbar for category nav */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

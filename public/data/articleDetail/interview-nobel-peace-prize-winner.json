@@ -1,0 +1,50 @@
+{
+  "slug": "interview-nobel-peace-prize-winner",
+  "category": "Featured",
+  "title": "Interview: 2025 Nobel Peace Prize Winner on Global Cooperation",
+  "introText": "The 2025 Nobel Peace Prize honored efforts to build international cooperation on climate change. In an exclusive interview, the laureate reflects on decades of work and the path forward for global action.",
+  "readingTime": "10 Min Read",
+  "author": {
+    "name": "Maria Santos",
+    "role": "International Affairs Editor",
+    "image": "/images/news/author-woman-1.webp"
+  },
+  "lastUpdated": "December 13, 2025",
+  "content": [
+    {
+      "type": "image",
+      "content": "Nobel Peace Prize laureate interview",
+      "imageUrl": "/images/news/handshake.webp",
+      "imageAlt": "International cooperation"
+    },
+    {
+      "type": "heading",
+      "content": "A Life's Work",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "content": "'I've spent 40 years trying to get countries to work together on problems that don't respect borders,' the laureate reflects. 'Climate change is the ultimate test of whether humanity can cooperate.'"
+    },
+    {
+      "type": "heading",
+      "content": "Reasons for Hope",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "content": "Despite setbacks, the laureate sees progress. 'The Paris Agreement, COP30, the youth movement—momentum is building. We have the solutions. What we need is political will.'"
+    },
+    {
+      "type": "heading",
+      "content": "Call to Action",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "content": "'This prize belongs to everyone fighting for a livable planet. My message is simple: don't give up. History bends toward justice when people push it.'"
+    }
+  ],
+  "bookmarked": false
+}
+
