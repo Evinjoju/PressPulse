@@ -54,9 +54,9 @@ const HeroLead: React.FC<HeroLeadProps> = ({
 
           {/* Title */}
           <Wrapper>
-            <div className="text-4xl sm:text-5xl font-bold leading-tight text-gray-900 hover:text-orange-600 transition-colors">
+            <h1 className="text-4xl sm:text-5xl font-bold leading-tight text-gray-900 hover:text-orange-600 transition-colors">
               {title}
-            </div>
+            </h1>
           </Wrapper>
 
             {/* Excerpt */}
