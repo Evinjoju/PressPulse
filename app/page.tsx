@@ -174,6 +174,16 @@ export default async function HomePage() {
         <MainNav currentPage="home" />
         <CategoryNav />
 
+        {/* Visible heading with title keywords for SEO */}
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <h1 className="text-1xl md:text-1xl font-bold text-gray-900 mb-2">
+            Latest News & Breaking Stories 2025
+          </h1>
+          <p className="text-base text-gray-700">
+            Stay informed with the latest breaking news and stories from around the world. Get real-time updates on politics, business, technology, health, and more.
+          </p>
+        </div>
+
       <FeatureHomePart
         hero={heroArticle}
         sidebarItems={sidebarItems}
