@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import LoadingScreen from "@/src/components/LoadingScreen";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.citizencorrespondent.com"),
@@ -109,6 +110,7 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/images/cc-favIcon.svg" />
       </head>
       <body className="font-sans antialiased">
+        <LoadingScreen />
         {children}
       </body>
     </html>

@@ -13,8 +13,23 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
-  }
+}
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* Loading screen zoom animation */
+@keyframes logoZoomIn {
+  from {
+    transform: scale(0.3);
+  }
+  to {
+    transform: scale(80.0);
+  }
+}
+
+.logo-zoom-animation {
+  animation: logoZoomIn 1.5s ease-out 1s forwards;
+  transform: scale(0.3);
 }

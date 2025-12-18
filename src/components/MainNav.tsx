@@ -1,6 +1,6 @@
 // components/MainNav.tsx
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
@@ -18,6 +18,7 @@ interface MainNavProps {
 const MainNav: React.FC<MainNavProps> = ({ currentPage = "home" }) => {
     const [searchOpen, setSearchOpen] = useState(false);
     const [pagesDropdownOpen, setPagesDropdownOpen] = useState(false);
+    const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
 
     const menuItems = [
         { name: "Home", href: "/", title: "Home" },
@@ -31,9 +32,19 @@ const MainNav: React.FC<MainNavProps> = ({ currentPage = "home" }) => {
 
     const pagesDropdownItems = [
         { name: "About Us", href: "/about-us", title: "About Us" },
+        { name: "Authors", href: "/authors", title: "Authors" },
         { name: "Privacy Policy", href: "/privacy-policy", title: "Privacy Policy" },
         { name: "Terms & Conditions", href: "/terms-conditions", title: "Terms & Conditions" },
     ];
+
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (dropdownTimeout) {
+                clearTimeout(dropdownTimeout);
+            }
+        };
+    }, [dropdownTimeout]);
 
     return (
         <>
@@ -62,12 +73,27 @@ const MainNav: React.FC<MainNavProps> = ({ currentPage = "home" }) => {
                                     (!item.href.startsWith("/category/") && currentPage === item.href.slice(1));
                                 
                                 if (item.hasDropdown) {
+                                    const handleMouseEnter = () => {
+                                        if (dropdownTimeout) {
+                                            clearTimeout(dropdownTimeout);
+                                            setDropdownTimeout(null);
+                                        }
+                                        setPagesDropdownOpen(true);
+                                    };
+
+                                    const handleMouseLeave = () => {
+                                        const timeout = setTimeout(() => {
+                                            setPagesDropdownOpen(false);
+                                        }, 200); // 200ms delay before closing
+                                        setDropdownTimeout(timeout);
+                                    };
+
                                     return (
                                         <div
                                             key={item.name}
                                             className="relative"
-                                            onMouseEnter={() => setPagesDropdownOpen(true)}
-                                            onMouseLeave={() => setPagesDropdownOpen(false)}
+                                            onMouseEnter={handleMouseEnter}
+                                            onMouseLeave={handleMouseLeave}
                                         >
                                             <button
                                                 className={`relative text-sm font-medium transition-colors duration-200 ${
@@ -82,18 +108,24 @@ const MainNav: React.FC<MainNavProps> = ({ currentPage = "home" }) => {
                                             
                                             {/* Dropdown Menu */}
                                             {pagesDropdownOpen && (
-                                                <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded shadow-lg z-50">
-                                                    <div className="py-1">
-                                                        {pagesDropdownItems.map((dropdownItem) => (
-                                                            <Link
-                                                                key={dropdownItem.name}
-                                                                href={dropdownItem.href}
-                                                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-orange-500 transition-colors duration-200"
-                                                                title={dropdownItem.title}
-                                                            >
-                                                                {dropdownItem.name}
-                                                            </Link>
-                                                        ))}
+                                                <div 
+                                                    className="absolute top-full left-0 pt-1 w-48 z-50"
+                                                    onMouseEnter={handleMouseEnter}
+                                                    onMouseLeave={handleMouseLeave}
+                                                >
+                                                    <div className="bg-white border border-gray-200 rounded shadow-lg">
+                                                        <div className="py-1">
+                                                            {pagesDropdownItems.map((dropdownItem) => (
+                                                                <Link
+                                                                    key={dropdownItem.name}
+                                                                    href={dropdownItem.href}
+                                                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-orange-500 transition-colors duration-200"
+                                                                    title={dropdownItem.title}
+                                                                >
+                                                                    {dropdownItem.name}
+                                                                </Link>
+                                                            ))}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             )}

@@ -150,7 +150,7 @@ export default async function HomePage() {
     <>
       {/* Preload critical hero image for LCP */}
       <link rel="preload" as="image" href={heroImage} fetchPriority="high" />
-      
+
       {/* WebSite Schema */}
       <script
         type="application/ld+json"
@@ -174,19 +174,19 @@ export default async function HomePage() {
         <MainNav currentPage="home" />
         <CategoryNav />
 
-       
-      <FeatureHomePart
-        hero={heroArticle}
-        sidebarItems={sidebarItems}
-        horizontalItems={horizontalItems}
-      />
 
-      <div className="max-w-7xl mx-auto px-6 pb-12 border-t border-gray-200">
-        <MainGrid items={mainGridItems} heading="World" />
-      </div>
+        <FeatureHomePart
+          hero={heroArticle}
+          sidebarItems={sidebarItems}
+          horizontalItems={horizontalItems}
+        />
 
-       {/* Visible heading with title keywords for SEO */}
-       <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-7xl mx-auto px-6 pb-12 border-t border-gray-200">
+          <MainGrid items={mainGridItems} heading="World" />
+        </div>
+
+        {/* Visible heading with title keywords for SEO */}
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="text-1xl md:text-1xl font-bold text-gray-900 mb-2">
             Latest News & Breaking Stories 2025
           </div>
@@ -195,70 +195,70 @@ export default async function HomePage() {
           </p>
         </div>
 
-      <Suspense fallback={<div className="h-32 animate-pulse bg-gray-100" />}>
-        <div className="w-full py-2">
-          <BigAddBanner />
-        </div>
-      </Suspense>
+        <Suspense fallback={<div className="h-32 animate-pulse bg-gray-100" />}>
+          <div className="w-full py-2">
+            <BigAddBanner />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100" />}>
-        <FeatureCategoryPart
-          featuredArticle={featuredArticle}
-          rightArticles={rightArticles}
-          adBanner={adBanner}
-          heading="Business News"
-        />
-      </Suspense>
-
-      <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
-        <div className="max-w-7xl mx-auto px-6 py-2">
-          <HorizontalArticleCard
-            slug={horizontalArticle.slug}
-            category={horizontalArticle.category}
-            title={horizontalArticle.title}
-            excerpt={horizontalArticle.excerpt}
-            date={horizontalArticle.date}
-            image={horizontalArticle.image}
-            bookmarked={horizontalArticle.bookmarked}
-            heading="Technology"
+        <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100" />}>
+          <FeatureCategoryPart
+            featuredArticle={featuredArticle}
+            rightArticles={rightArticles}
+            adBanner={adBanner}
+            heading="Business News"
           />
-        </div>
-      </Suspense>
+        </Suspense>
 
-      <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
-        <div className="max-w-7xl mx-auto pt-4 px-6 pb-12">
-          <MainGridLazy items={mainGridTechnologyItems} />
-        </div>
-      </Suspense>
+        <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
+          <div className="max-w-7xl mx-auto px-6 py-2">
+            <HorizontalArticleCard
+              slug={horizontalArticle.slug}
+              category={horizontalArticle.category}
+              title={horizontalArticle.title}
+              excerpt={horizontalArticle.excerpt}
+              date={horizontalArticle.date}
+              image={horizontalArticle.image}
+              bookmarked={horizontalArticle.bookmarked}
+              heading="Technology"
+            />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<div className="h-32 animate-pulse bg-gray-100" />}>
-        <div className="w-full py-2">
-          <BigAddBanner />
-        </div>
-      </Suspense>
+        <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
+          <div className="max-w-7xl mx-auto pt-4 px-6 pb-12">
+            <MainGridLazy items={mainGridTechnologyItems} />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
-        <div className="max-w-7xl mx-auto px-6 pb-12">
-          <MainGridLazy items={mainGridEnvironmentItems} heading="Environment" />
-        </div>
-      </Suspense>
+        <Suspense fallback={<div className="h-32 animate-pulse bg-gray-100" />}>
+          <div className="w-full py-2">
+            <BigAddBanner />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100" />}>
-        <div className="max-w-7xl mx-auto px-6 pb-12 border-t border-gray-200">
-          <OverlayArticleGrid items={overlayGridPoliticsItems} heading="Politics" />
-        </div>
-      </Suspense>
+        <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
+          <div className="max-w-7xl mx-auto px-6 pb-12">
+            <MainGridLazy items={mainGridEnvironmentItems} heading="Environment" />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
-        <div className="max-w-7xl mx-auto px-6 pb-12 border-t border-gray-200">
-          <MainGridLazy items={mainGridMoreNewsItems} heading="More News" initialRows={2} />
-        </div>
-      </Suspense>
+        <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100" />}>
+          <div className="max-w-7xl mx-auto px-6 pb-12 border-t border-gray-200">
+            <OverlayArticleGrid items={overlayGridPoliticsItems} heading="Politics" />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
-        <Footer />
-      </Suspense>
-      </div>
+        <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
+          <div className="max-w-7xl mx-auto px-6 pb-12 border-t border-gray-200">
+            <MainGridLazy items={mainGridMoreNewsItems} heading="More News" initialRows={2} />
+        </div>
+        </Suspense>
+
+        <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
+          <Footer />
+        </Suspense>
+    </div>
     </>
   );
 }
