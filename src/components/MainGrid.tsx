@@ -83,6 +83,8 @@ const MainGrid: React.FC<MainGridProps> = ({
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   priority={index < 2}
+                  loading={index < 2 ? "eager" : "lazy"}
+                  decoding="async"
                 />
               </div>
             </Link>

@@ -79,6 +79,8 @@ const Sidebar: React.FC<SidebarProps> = ({ items, heading, onBookmarkToggle }) =
                 alt={item.title}
                 className="w-full h-full object-cover"
                 loading="lazy"
+                decoding="async"
+                fetchPriority="low"
               />
             </Link>
           </div>

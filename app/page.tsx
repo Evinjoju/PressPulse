@@ -10,21 +10,39 @@ import { HorizontalSidebarItem } from "@/src/components/HorizontalSidebar";
 import MainGrid, { MainGridItem } from "@/src/components/MainGrid";
 import homeData from "@/public/data/homePage/home-featureHomepart.json";
 import mainGridData from "@/public/data/homePage/home-mainGrid.json";
-import mainGridTechnologyData from "@/public/data/homePage/home-mainGrid-technology.json";
-import mainGridEnvironmentData from "@/public/data/homePage/home-mainGrid-environment.json";
-import mainGridMoreNewsData from "@/public/data/homePage/home-mainGrid-moreNews.json";
-import OverlayArticleGrid, { OverlayArticleGridItem } from "@/src/components/OverlayArticleGrid";
-import overlayGridPoliticsData from "@/public/data/homePage/home-overlayGrid-politics.json";
-import FeatureCategoryPart from "@/src/components/FeatureCategoryPart";
+import { Metadata } from "next";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 import { FeaturedArticleCardProps } from "@/src/components/FeaturedArticleCard";
 import { ArticleCardSmallProps } from "@/src/components/ArticleCardSmall";
 import { AdBannerProps } from "@/src/components/AdBanner";
-import featureCategoryData from "@/public/data/homePage/home-featureCategoryPart.json";
-import BigAddBanner from "@/src/components/BigAddBanner";
-import HorizontalArticleCard, { HorizontalArticleCardProps } from "@/src/components/HorizontalArticleCard";
-import horizontalArticleData from "@/public/data/homePage/home-horizontalArticle.json";
-import Footer from "@/src/components/Footer";
-import { Metadata } from "next";
+import { OverlayArticleGridItem } from "@/src/components/OverlayArticleGrid";
+import { HorizontalArticleCardProps } from "@/src/components/HorizontalArticleCard";
+
+// Lazy load below-the-fold components
+const MainGridLazy = dynamic(() => import("@/src/components/MainGrid"), {
+  loading: () => <div className="h-64 animate-pulse bg-gray-100" />,
+});
+
+const FeatureCategoryPart = dynamic(() => import("@/src/components/FeatureCategoryPart"), {
+  loading: () => <div className="h-96 animate-pulse bg-gray-100" />,
+});
+
+const BigAddBanner = dynamic(() => import("@/src/components/BigAddBanner"), {
+  loading: () => <div className="h-32 animate-pulse bg-gray-100" />,
+});
+
+const HorizontalArticleCard = dynamic(() => import("@/src/components/HorizontalArticleCard"), {
+  loading: () => <div className="h-64 animate-pulse bg-gray-100" />,
+});
+
+const OverlayArticleGrid = dynamic(() => import("@/src/components/OverlayArticleGrid"), {
+  loading: () => <div className="h-96 animate-pulse bg-gray-100" />,
+});
+
+const Footer = dynamic(() => import("@/src/components/Footer"), {
+  loading: () => <div className="h-64 animate-pulse bg-gray-100" />,
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.citizencorrespondent.com"),
@@ -83,19 +101,37 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
   const heroArticle = homeData.hero as HeroArticle;
   const sidebarItems = homeData.sidebar as SidebarItem[];
   const horizontalItems = homeData.horizontal as HorizontalSidebarItem[];
   const mainGridItems = mainGridData.mainGrid as MainGridItem[];
-  const mainGridTechnologyItems = mainGridTechnologyData.mainGrid as MainGridItem[];
-  const mainGridEnvironmentItems = mainGridEnvironmentData.mainGrid as MainGridItem[];
-  const mainGridMoreNewsItems = mainGridMoreNewsData.mainGrid as MainGridItem[];
-  const overlayGridPoliticsItems = overlayGridPoliticsData.overlayGrid as OverlayArticleGridItem[];
-  const featuredArticle = featureCategoryData.featuredArticle as FeaturedArticleCardProps;
-  const rightArticles = featureCategoryData.rightArticles as ArticleCardSmallProps[];
-  const adBanner = featureCategoryData.adBanner as AdBannerProps;
-  const horizontalArticle = horizontalArticleData.article as HorizontalArticleCardProps;
+
+  // Lazy load below-the-fold data
+  const [
+    mainGridTechnologyData,
+    mainGridEnvironmentData,
+    mainGridMoreNewsData,
+    overlayGridPoliticsData,
+    featureCategoryData,
+    horizontalArticleData,
+  ] = await Promise.all([
+    import("@/public/data/homePage/home-mainGrid-technology.json"),
+    import("@/public/data/homePage/home-mainGrid-environment.json"),
+    import("@/public/data/homePage/home-mainGrid-moreNews.json"),
+    import("@/public/data/homePage/home-overlayGrid-politics.json"),
+    import("@/public/data/homePage/home-featureCategoryPart.json"),
+    import("@/public/data/homePage/home-horizontalArticle.json"),
+  ]);
+
+  const mainGridTechnologyItems = mainGridTechnologyData.default.mainGrid as MainGridItem[];
+  const mainGridEnvironmentItems = mainGridEnvironmentData.default.mainGrid as MainGridItem[];
+  const mainGridMoreNewsItems = mainGridMoreNewsData.default.mainGrid as MainGridItem[];
+  const overlayGridPoliticsItems = overlayGridPoliticsData.default.overlayGrid as OverlayArticleGridItem[];
+  const featuredArticle = featureCategoryData.default.featuredArticle as FeaturedArticleCardProps;
+  const rightArticles = featureCategoryData.default.rightArticles as ArticleCardSmallProps[];
+  const adBanner = featureCategoryData.default.adBanner as AdBannerProps;
+  const horizontalArticle = horizontalArticleData.default.article as HorizontalArticleCardProps;
 
   return (
     <>
@@ -133,51 +169,69 @@ export default function HomePage() {
         <MainGrid items={mainGridItems} heading="World" />
       </div>
 
-      <div className="w-full py-2">
-        <BigAddBanner />
-      </div>
+      <Suspense fallback={<div className="h-32 animate-pulse bg-gray-100" />}>
+        <div className="w-full py-2">
+          <BigAddBanner />
+        </div>
+      </Suspense>
 
-      <FeatureCategoryPart
-        featuredArticle={featuredArticle}
-        rightArticles={rightArticles}
-        adBanner={adBanner}
-        heading="Business News"
-      />
-
-      <div className="max-w-7xl mx-auto px-6 py-2">
-        <HorizontalArticleCard
-          slug={horizontalArticle.slug}
-          category={horizontalArticle.category}
-          title={horizontalArticle.title}
-          excerpt={horizontalArticle.excerpt}
-          date={horizontalArticle.date}
-          image={horizontalArticle.image}
-          bookmarked={horizontalArticle.bookmarked}
-          heading="Technology"
+      <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100" />}>
+        <FeatureCategoryPart
+          featuredArticle={featuredArticle}
+          rightArticles={rightArticles}
+          adBanner={adBanner}
+          heading="Business News"
         />
-      </div>
+      </Suspense>
 
-      <div className="max-w-7xl mx-auto pt-4 px-6 pb-12">
-        <MainGrid items={mainGridTechnologyItems}/>
-      </div>
+      <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
+        <div className="max-w-7xl mx-auto px-6 py-2">
+          <HorizontalArticleCard
+            slug={horizontalArticle.slug}
+            category={horizontalArticle.category}
+            title={horizontalArticle.title}
+            excerpt={horizontalArticle.excerpt}
+            date={horizontalArticle.date}
+            image={horizontalArticle.image}
+            bookmarked={horizontalArticle.bookmarked}
+            heading="Technology"
+          />
+        </div>
+      </Suspense>
 
-      <div className="w-full py-2">
-        <BigAddBanner />
-      </div>
+      <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
+        <div className="max-w-7xl mx-auto pt-4 px-6 pb-12">
+          <MainGridLazy items={mainGridTechnologyItems} />
+        </div>
+      </Suspense>
 
-      <div className="max-w-7xl mx-auto px-6 pb-12">
-        <MainGrid items={mainGridEnvironmentItems} heading="Environment" />
-      </div>
+      <Suspense fallback={<div className="h-32 animate-pulse bg-gray-100" />}>
+        <div className="w-full py-2">
+          <BigAddBanner />
+        </div>
+      </Suspense>
 
-      <div className="max-w-7xl mx-auto px-6 pb-12 border-t border-gray-200">
-        <OverlayArticleGrid items={overlayGridPoliticsItems} heading="Politics" />
-      </div>
+      <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
+        <div className="max-w-7xl mx-auto px-6 pb-12">
+          <MainGridLazy items={mainGridEnvironmentItems} heading="Environment" />
+        </div>
+      </Suspense>
 
-      <div className="max-w-7xl mx-auto px-6 pb-12 border-t border-gray-200">
-        <MainGrid items={mainGridMoreNewsItems} heading="More News" initialRows={2} />
-      </div>
+      <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100" />}>
+        <div className="max-w-7xl mx-auto px-6 pb-12 border-t border-gray-200">
+          <OverlayArticleGrid items={overlayGridPoliticsItems} heading="Politics" />
+        </div>
+      </Suspense>
 
-      <Footer />
+      <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
+        <div className="max-w-7xl mx-auto px-6 pb-12 border-t border-gray-200">
+          <MainGridLazy items={mainGridMoreNewsItems} heading="More News" initialRows={2} />
+        </div>
+      </Suspense>
+
+      <Suspense fallback={<div className="h-64 animate-pulse bg-gray-100" />}>
+        <Footer />
+      </Suspense>
       </div>
     </>
   );

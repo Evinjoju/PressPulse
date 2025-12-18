@@ -91,6 +91,8 @@ const HeroLead: React.FC<HeroLeadProps> = ({
                   priority
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
             </Wrapper>

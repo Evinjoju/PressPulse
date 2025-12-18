@@ -51,6 +51,9 @@ const OverlayArticleGrid: React.FC<OverlayArticleGridProps> = ({
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   priority={index < 2}
+                  loading={index < 2 ? "eager" : "lazy"}
+                  decoding="async"
+                  fetchPriority={index < 2 ? "high" : "low"}
                 />
                 {/* Dark Gradient Overlay */}
                 <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent" />

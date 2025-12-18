@@ -34,6 +34,9 @@ const ArticleCardSmall: React.FC<ArticleCardSmallProps> = ({
             fill
             className="object-cover hover:scale-105 transition-transform duration-300"
             sizes="128px"
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
           />
         </div>
       </Link>

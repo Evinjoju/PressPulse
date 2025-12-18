@@ -46,6 +46,9 @@ const HorizontalArticleCard: React.FC<HorizontalArticleCardProps> = ({
             fill
             className="object-cover hover:scale-105 transition-transform duration-500"
             sizes="(max-width: 768px) 100vw, 384px"
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
           />
         </div>
       </Link>
