@@ -24,15 +24,19 @@ const CategoryNav: React.FC<CategoryNavProps> = ({
     <nav className="bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center space-x-6 overflow-x-auto py-1.5 scrollbar-hide">
-          {categories.map((category) => (
-            <Link
-              key={category}
-              href={`/category/${category.toLowerCase().replace(/\s+/g, "-")}`}
-              className="text-sm font-medium text-gray-700 hover:text-orange-500 whitespace-nowrap transition-colors duration-200"
-            >
-              {category}
-            </Link>
-          ))}
+          {categories.map((category) => {
+            const categorySlug = category.toLowerCase().replace(/\s+/g, "-");
+            return (
+              <Link
+                key={category}
+                href={`/category/${categorySlug}`}
+                title={`${category} News`}
+                className="text-sm font-medium text-gray-700 hover:text-orange-500 whitespace-nowrap transition-colors duration-200"
+              >
+                {category}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </nav>

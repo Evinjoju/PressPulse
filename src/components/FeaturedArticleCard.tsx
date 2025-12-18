@@ -28,7 +28,7 @@ const FeaturedArticleCard: React.FC<FeaturedArticleCardProps> = ({
 }) => {
   return (
     <article className="relative w-full h-[500px] overflow-hidden group">
-      <Link href={`/article/${slug}`} className="block h-full">
+      <Link href={`/article/${slug}`} title={title} className="block h-full">
         <Image
           src={image}
           alt={title}
@@ -48,7 +48,7 @@ const FeaturedArticleCard: React.FC<FeaturedArticleCardProps> = ({
           <div className="text-sm font-semibold text-white uppercase tracking-wide">
             {category}
           </div>
-          <Link href={`/article/${slug}`}>
+          <Link href={`/article/${slug}`} title={title}>
             <h2 className="text-3xl font-bold leading-tight hover:text-orange-400 transition-colors">
               {title}
             </h2>

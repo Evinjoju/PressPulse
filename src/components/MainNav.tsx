@@ -37,7 +37,7 @@ const MainNav: React.FC<MainNavProps> = ({ currentPage = "home" }) => {
                     <div className="flex items-center justify-between h-16">
                         <div className="flex items-center justify-between gap-6">
                         {/* Left: Logo */}
-                        <Link href="/" className="flex items-center">
+                        <Link href="/" title="CitizenCorrespondent Home" className="flex items-center">
                             <Image
                                 src="/images/cc-logo.svg"
                                 alt="CitizenCorrespondent"

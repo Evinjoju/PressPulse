@@ -33,7 +33,7 @@ const HeroLead: React.FC<HeroLeadProps> = ({
   const linkHref = href || (slug ? `/article/${slug}` : undefined);
   const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     linkHref ? (
-      <Link href={linkHref} className="block">
+      <Link href={linkHref} title={title} className="block">
         {children}
       </Link>
     ) : (

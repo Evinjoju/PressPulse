@@ -84,7 +84,7 @@ const Footer: React.FC<FooterProps> = ({
           {/* Left Section: Logo, Description, Social */}
           <div className="space-y-6">
             {/* Logo */}
-            <Link href="/" className="flex items-center">
+            <Link href="/" title="CitizenCorrespondent Home" className="flex items-center">
               <Image
                 src="/images/cc-logo.svg"
                 alt="CitizenCorrespondent"
@@ -119,6 +119,7 @@ const Footer: React.FC<FooterProps> = ({
             <div>
               <Link
                 href={aboutCompanyLink}
+                title="About Company"
                 className="inline-flex items-center text-orange-500 hover:text-orange-600 font-medium text-sm transition-colors"
               >
                 About Company
@@ -144,6 +145,7 @@ const Footer: React.FC<FooterProps> = ({
                 <React.Fragment key={link.href}>
                   <Link
                     href={link.href}
+                    title={link.text}
                     className="hover:text-orange-500 transition-colors"
                   >
                     {link.text}

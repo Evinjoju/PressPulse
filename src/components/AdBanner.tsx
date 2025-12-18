@@ -31,7 +31,7 @@ const AdBanner: React.FC<AdBannerProps> = ({
 
   if (link) {
     return (
-      <Link href={link} target="_blank" rel="noopener noreferrer" className="block">
+      <Link href={link} target="_blank" rel="noopener noreferrer" title={alt || "Advertisement"} className="block">
         {content}
       </Link>
     );

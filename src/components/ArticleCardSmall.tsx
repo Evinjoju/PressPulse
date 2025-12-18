@@ -26,7 +26,7 @@ const ArticleCardSmall: React.FC<ArticleCardSmallProps> = ({
 }) => {
   return (
     <article className="flex gap-4 pb-6 border-b border-gray-200 last:border-0 last:pb-0">
-      <Link href={`/article/${slug}`} className="block shrink-0">
+      <Link href={`/article/${slug}`} title={title} className="block shrink-0">
         <div className="relative w-32 h-24 overflow-hidden">
           <Image
             src={image}
@@ -45,7 +45,7 @@ const ArticleCardSmall: React.FC<ArticleCardSmallProps> = ({
             <span>Live:</span>
           </div>
         )}
-        <Link href={`/article/${slug}`}>
+        <Link href={`/article/${slug}`} title={title}>
           <h3 className="text-base font-semibold text-gray-900 leading-snug hover:text-orange-600 transition-colors">
             {title}
           </h3>

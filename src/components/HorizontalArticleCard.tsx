@@ -38,7 +38,7 @@ const HorizontalArticleCard: React.FC<HorizontalArticleCardProps> = ({
       )}
       <article className="flex flex-col md:flex-row gap-6">
       {/* Image Section */}
-      <Link href={`/article/${slug}`} className="block shrink-0 w-full md:w-96">
+      <Link href={`/article/${slug}`} title={title} className="block shrink-0 w-full md:w-96">
         <div className="relative w-full h-64 md:h-80 overflow-hidden">
           <Image
             src={image}
@@ -55,7 +55,7 @@ const HorizontalArticleCard: React.FC<HorizontalArticleCardProps> = ({
         <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide">
           {category}
         </div>
-        <Link href={`/article/${slug}`}>
+        <Link href={`/article/${slug}`} title={title}>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight hover:text-orange-600 transition-colors">
             {title}
           </h2>
