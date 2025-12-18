@@ -88,9 +88,9 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
         </div>
 
         {/* Main Title */}
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+        <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
           {title}
-        </h1>
+        </div>
 
         {/* Introductory Text */}
         <p className="text-lg text-gray-700 leading-relaxed mb-2">
