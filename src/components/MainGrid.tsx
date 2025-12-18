@@ -98,9 +98,9 @@ const MainGrid: React.FC<MainGridProps> = ({
               title={item.title}
               className="block"
             >
-              <h3 className="text-lg font-semibold text-gray-900 leading-snug hover:text-orange-600 transition-colors">
+              <h2 className="text-lg font-semibold text-gray-900 leading-snug hover:text-orange-600 transition-colors">
                 {item.title}
-              </h3>
+              </h2>
             </Link>
 
             <div className="flex items-center gap-3 text-sm text-gray-600">

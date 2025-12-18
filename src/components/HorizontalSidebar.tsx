@@ -47,9 +47,9 @@ const HorizontalSidebar: React.FC<HorizontalSidebarProps> = ({
                   title={item.title}
                   className="block"
                 >
-                  <h3 className="text-base font-semibold text-gray-900 leading-snug hover:text-orange-600 transition-colors">
+                  <h2 className="text-base font-semibold text-gray-900 leading-snug hover:text-orange-600 transition-colors">
                     {item.title}
-                  </h3>
+                  </h2>
                 </Link>
               </div>
             </div>

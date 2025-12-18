@@ -60,9 +60,9 @@ const OverlayArticleGrid: React.FC<OverlayArticleGridProps> = ({
                   <div className="text-xs font-semibold uppercase tracking-wide mb-2">
                     {item.category}
                   </div>
-                  <h3 className="text-lg font-bold leading-tight mb-2 group-hover:text-orange-400 transition-colors">
+                  <h2 className="text-lg font-bold leading-tight mb-2 group-hover:text-orange-400 transition-colors">
                     {item.title}
-                  </h3>
+                  </h2>
                   {item.excerpt && (
                     <p className="text-xs text-gray-200 line-clamp-2 mb-2">
                       {item.excerpt}
