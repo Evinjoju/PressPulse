@@ -1,15 +1,4 @@
 // app/page.tsx
-import DateBar from "@/src/components/DateBar";
-import MainNav from "@/src/components/MainNav";
-import CategoryNav from "@/src/components/CategoryNav";
-import FeatureHomePart, {
-  HeroArticle,
-} from "@/src/components/FeatureHomePart";
-import { SidebarItem } from "@/src/components/Sidebar";
-import { HorizontalSidebarItem } from "@/src/components/HorizontalSidebar";
-import MainGrid, { MainGridItem } from "@/src/components/MainGrid";
-import homeData from "@/public/data/homePage/home-featureHomepart.json";
-import mainGridData from "@/public/data/homePage/home-mainGrid.json";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
@@ -18,29 +7,62 @@ import { ArticleCardSmallProps } from "@/src/components/ArticleCardSmall";
 import { AdBannerProps } from "@/src/components/AdBanner";
 import { OverlayArticleGridItem } from "@/src/components/OverlayArticleGrid";
 import { HorizontalArticleCardProps } from "@/src/components/HorizontalArticleCard";
+import { HeroArticle } from "@/src/components/FeatureHomePart";
+import { SidebarItem } from "@/src/components/Sidebar";
+import { HorizontalSidebarItem } from "@/src/components/HorizontalSidebar";
+import { MainGridItem } from "@/src/components/MainGrid";
+import homeData from "@/public/data/homePage/home-featureHomepart.json";
+import mainGridData from "@/public/data/homePage/home-mainGrid.json";
 
-// Lazy load below-the-fold components
+// Critical above-the-fold components - load immediately but with deferred hydration
+const DateBar = dynamic(() => import("@/src/components/DateBar"), {
+  ssr: true,
+});
+
+const MainNav = dynamic(() => import("@/src/components/MainNav"), {
+  ssr: true,
+});
+
+const CategoryNav = dynamic(() => import("@/src/components/CategoryNav"), {
+  ssr: true,
+});
+
+const FeatureHomePart = dynamic(() => import("@/src/components/FeatureHomePart"), {
+  ssr: true,
+});
+
+// Lazy load below-the-fold components with no SSR to reduce initial bundle
+const MainGrid = dynamic(() => import("@/src/components/MainGrid"), {
+  ssr: true,
+});
+
 const MainGridLazy = dynamic(() => import("@/src/components/MainGrid"), {
+  ssr: false,
   loading: () => <div className="h-64 animate-pulse bg-gray-100" />,
 });
 
 const FeatureCategoryPart = dynamic(() => import("@/src/components/FeatureCategoryPart"), {
+  ssr: false,
   loading: () => <div className="h-96 animate-pulse bg-gray-100" />,
 });
 
 const BigAddBanner = dynamic(() => import("@/src/components/BigAddBanner"), {
+  ssr: false,
   loading: () => <div className="h-32 animate-pulse bg-gray-100" />,
 });
 
 const HorizontalArticleCard = dynamic(() => import("@/src/components/HorizontalArticleCard"), {
+  ssr: false,
   loading: () => <div className="h-64 animate-pulse bg-gray-100" />,
 });
 
 const OverlayArticleGrid = dynamic(() => import("@/src/components/OverlayArticleGrid"), {
+  ssr: false,
   loading: () => <div className="h-96 animate-pulse bg-gray-100" />,
 });
 
 const Footer = dynamic(() => import("@/src/components/Footer"), {
+  ssr: false,
   loading: () => <div className="h-64 animate-pulse bg-gray-100" />,
 });
 

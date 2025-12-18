@@ -1,10 +1,15 @@
 // components/MainNav.tsx
 "use client";
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
 import { Search } from "lucide-react";
-import SearchModal from "./SearchModal";
+
+// Lazy load SearchModal - only load when search is opened
+const SearchModal = dynamic(() => import("./SearchModal"), {
+  ssr: false,
+});
 
 interface MainNavProps {
     currentPage?: string;
