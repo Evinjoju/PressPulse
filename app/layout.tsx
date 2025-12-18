@@ -1,13 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-  preload: true,
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.citizencorrespondent.com"),
@@ -111,9 +103,7 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" sizes="any" href="/images/cc-favIcon.svg" />
         <link rel="icon" type="image/svg+xml" href="/images/cc-favIcon.svg" />
       </head>
-      <body
-        className={`${inter.variable} font-sans antialiased`}
-      >
+      <body className="font-sans antialiased">
         {children}
       </body>
     </html>
