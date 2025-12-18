@@ -1,4 +1,9 @@
 import { MetadataRoute } from 'next';
+import fs from 'fs';
+import path from 'path';
+
+export const dynamic = 'force-static';
+export const revalidate = 3600; // Revalidate every hour
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.citizencorrespondent.com';
@@ -48,8 +53,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let articlePages: MetadataRoute.Sitemap = [];
   
   try {
-    const fs = require('fs');
-    const path = require('path');
     const articleDir = path.join(process.cwd(), 'public/data/articleDetail');
 
     if (fs.existsSync(articleDir)) {
@@ -64,7 +67,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       articlePages = articleFiles.map((file: string) => {
         const slug = file.replace('.json', '');
         try {
-          const articleData = require(`@/public/data/articleDetail/${slug}.json`);
+          const filePath = path.join(articleDir, file);
+          const fileContent = fs.readFileSync(filePath, 'utf-8');
+          const articleData = JSON.parse(fileContent);
           return {
             url: `${baseUrl}/article/${slug}`,
             lastModified: articleData.lastUpdated || currentDate,
