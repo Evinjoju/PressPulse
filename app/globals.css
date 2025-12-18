@@ -30,6 +30,6 @@ body {
 }
 
 .logo-zoom-animation {
-  animation: logoZoomIn 1.5s ease-out 1s forwards;
+  animation: logoZoomIn 2s ease-out 1s forwards;
   transform: scale(0.3);
 }

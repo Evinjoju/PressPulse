@@ -17,9 +17,8 @@ const LoadingScreen = () => {
 
     // Animation starts at 1 second, fade starts at the same time
     const animationStartTime = 1000; // 1 second - when zoom animation starts
-    const animationDuration = 1500; // 1.5 seconds - zoom animation duration
-    const fadeDuration = 500; // 500ms fade transition
-    const totalTime = animationStartTime + animationDuration; // 2.5 seconds total
+    const animationDuration = 2000; // 2 seconds - zoom animation duration (1s to 3s)
+    const totalTime = 3000; // 3 seconds total
 
     // Start fade out when animation starts (at 1 second)
     const fadeTimer = setTimeout(() => {
@@ -41,7 +40,7 @@ const LoadingScreen = () => {
 
   return (
     <div
-      className={`fixed inset-0 z-9999 bg-white flex items-center justify-center transition-opacity duration-500 ${
+      className={`fixed inset-0 z-9999 bg-white flex items-center justify-center transition-opacity duration-2000 ${
         isFading ? "opacity-0" : "opacity-100"
       }`}
       style={{ pointerEvents: isLoading ? "auto" : "none" }}
