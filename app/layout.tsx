@@ -97,9 +97,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Preconnect to external domains */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+       
         
         {/* Favicon */}
         <link rel="icon" href="/images/cc-favIcon.svg" type="image/svg+xml" />
