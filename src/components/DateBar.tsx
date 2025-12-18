@@ -34,7 +34,7 @@ const DateBar: React.FC<DateBarProps> = ({
         <div className="text-sm font-medium">{date}</div>
 
         {/* Center: Message */}
-        <div className="text-sm text-end flex-1 hidden md:block">{message}</div>
+        <h1 className="text-sm text-end flex-1 hidden md:block">{message}</h1>
 
         {/* Right: Explore Now Button */}
         <button className="bg-red-900 hover:bg-orange-600 text-white px-4 py-1.5 text-sm  transition-colors duration-200">
