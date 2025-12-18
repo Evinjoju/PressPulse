@@ -52,7 +52,7 @@ const Footer = dynamic(() => import("@/src/components/Footer"), {
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.citizencorrespondent.com"),
   title: "CitizenCorrespondent – Latest News & Breaking Stories 2025",
-  description: "Breaking news, analysis & coverage of world events, politics, business, technology & health. Your trusted source for reliable journalism in 2025.",
+  description: "Breaking news, analysis & coverage of world events, politics, business, technology & health latest breaking news & stories. Your trusted source for reliable journalism in 2025.",
   keywords: [
     "breaking news",
     "latest news",
