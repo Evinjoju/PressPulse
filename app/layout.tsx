@@ -104,6 +104,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/images/cc-favIcon.svg" type="image/svg+xml" />
+        <link rel="shortcut icon" href="/images/cc-favIcon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/images/cc-favIcon.svg" />
+        <link rel="icon" type="image/svg+xml" sizes="any" href="/images/cc-favIcon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/images/cc-favIcon.svg" />
+      </head>
       <body
         className={`${inter.variable} font-sans antialiased`}
       >
