@@ -12,10 +12,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Optimize for faster TTI
+  // Optimize for faster TTI and performance
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
+  // Optimize production builds
+  productionBrowserSourceMaps: false,
 };
 
 export default nextConfig;

@@ -14,11 +14,11 @@ import { MainGridItem } from "@/src/components/MainGrid";
 import homeData from "@/public/data/homePage/home-featureHomepart.json";
 import mainGridData from "@/public/data/homePage/home-mainGrid.json";
 
-// Critical above-the-fold components - load immediately
-const DateBar = dynamic(() => import("@/src/components/DateBar"));
-const MainNav = dynamic(() => import("@/src/components/MainNav"));
-const CategoryNav = dynamic(() => import("@/src/components/CategoryNav"));
-const FeatureHomePart = dynamic(() => import("@/src/components/FeatureHomePart"));
+// Critical above-the-fold components - import directly (no dynamic import for faster load)
+import DateBar from "@/src/components/DateBar";
+import MainNav from "@/src/components/MainNav";
+import CategoryNav from "@/src/components/CategoryNav";
+import FeatureHomePart from "@/src/components/FeatureHomePart";
 
 // Lazy load below-the-fold components for code splitting
 const MainGrid = dynamic(() => import("@/src/components/MainGrid"), {
@@ -117,6 +117,9 @@ export default async function HomePage() {
   const horizontalItems = homeData.horizontal as HorizontalSidebarItem[];
   const mainGridItems = mainGridData.mainGrid as MainGridItem[];
 
+  // Preload critical hero image for LCP
+  const heroImage = heroArticle.image;
+
   // Lazy load below-the-fold data
   const [
     mainGridTechnologyData,
@@ -145,6 +148,9 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* Preload critical hero image for LCP */}
+      <link rel="preload" as="image" href={heroImage} fetchPriority="high" />
+      
       {/* WebSite Schema */}
       <script
         type="application/ld+json"
@@ -164,7 +170,6 @@ export default async function HomePage() {
       />
 
       <div className="bg-white min-h-screen">
-        <div className="hidden">CitizenCorrespondent – Latest News & Breaking Stories 2025</div>
         <DateBar />
         <MainNav currentPage="home" />
         <CategoryNav />

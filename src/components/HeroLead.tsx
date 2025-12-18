@@ -93,6 +93,7 @@ const HeroLead: React.FC<HeroLeadProps> = ({
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   fetchPriority="high"
                   decoding="async"
+                  quality={85}
                 />
               </div>
             </Wrapper>
