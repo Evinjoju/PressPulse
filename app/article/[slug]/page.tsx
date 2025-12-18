@@ -49,9 +49,19 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const imageUrl = articleData.content.find((block: ArticleContentBlock) => block.type === "image")?.imageUrl || "https://www.citizencorrespondent.com/og-image.jpg";
 
   return {
+    metadataBase: new URL("https://www.citizencorrespondent.com"),
     title: `${articleData.title} | CitizenCorrespondent`,
     description: description,
-    keywords: `${articleData.category.toLowerCase()}, news, ${articleData.author.name}, ${articleData.category} news, latest news`,
+    keywords: [
+      articleData.category.toLowerCase(),
+      "news",
+      articleData.author.name,
+      `${articleData.category.toLowerCase()} news`,
+      "latest news",
+      "breaking news",
+      "citizen correspondent",
+      articleData.title.split(" ").slice(0, 5).join(" ").toLowerCase(),
+    ].join(", "),
     alternates: { canonical: url },
     openGraph: {
       title: articleData.title,
@@ -61,7 +71,10 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       images: [{ url: imageUrl, width: 1200, height: 630, alt: articleData.title }],
       type: "article",
       publishedTime: articleData.lastUpdated,
+      modifiedTime: articleData.lastUpdated,
       authors: [articleData.author.name],
+      section: articleData.category,
+      locale: "en_US",
     },
     twitter: {
       card: "summary_large_image",
@@ -69,7 +82,16 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       description: description,
       images: [imageUrl],
     },
-    robots: { index: true, follow: true },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
   };
 }
 
@@ -102,7 +124,52 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const sidebarItems = sidebarData.sidebar as SidebarItem[];
 
   // Get first image from content for schema
-  const firstImage = articleData.content.find((block: ArticleContentBlock) => block.type === "image")?.imageUrl || "";
+  const firstImageBlock = articleData.content.find((block: ArticleContentBlock) => block.type === "image");
+  const firstImage = firstImageBlock?.imageUrl || "";
+
+  // Build schema object
+  const schemaData: any = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: articleData.title,
+    description: articleData.introText || articleData.title,
+    datePublished: articleData.lastUpdated,
+    dateModified: articleData.lastUpdated,
+    author: {
+      "@type": "Person",
+      name: articleData.author.name,
+      jobTitle: articleData.author.role,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "CitizenCorrespondent",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.citizencorrespondent.com/logo.png",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://www.citizencorrespondent.com/article/${slug}`,
+    },
+    articleSection: articleData.category,
+    wordCount: articleData.content.reduce((count, block) => {
+      if (block.type === "paragraph") {
+        return count + (block.content?.split(" ").length || 0);
+      }
+      return count;
+    }, 0),
+  };
+
+  // Add image if available
+  if (firstImage) {
+    schemaData.image = {
+      "@type": "ImageObject",
+      url: firstImage,
+      width: 1200,
+      height: 630,
+    };
+  }
 
   return (
     <>
@@ -110,37 +177,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "NewsArticle",
-            headline: articleData.title,
-            description: articleData.introText || articleData.title,
-            image: firstImage,
-            datePublished: articleData.lastUpdated,
-            dateModified: articleData.lastUpdated,
-            author: {
-              "@type": "Person",
-              name: articleData.author.name,
-              jobTitle: articleData.author.role,
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "CitizenCorrespondent",
-              logo: {
-                "@type": "ImageObject",
-                url: "https://www.citizencorrespondent.com/logo.png",
-              },
-            },
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": `https://www.citizencorrespondent.com/article/${slug}`,
-            },
-            articleSection: articleData.category,
-          }),
+          __html: JSON.stringify(schemaData),
         }}
       />
 
       <div className="bg-white min-h-screen">
+        <div className="hidden">{articleData.title} | CitizenCorrespondent</div>
         <DateBar />
         <MainNav currentPage={`article/${slug}`} />
         <CategoryNav />

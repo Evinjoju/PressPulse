@@ -24,6 +24,64 @@ import BigAddBanner from "@/src/components/BigAddBanner";
 import HorizontalArticleCard, { HorizontalArticleCardProps } from "@/src/components/HorizontalArticleCard";
 import horizontalArticleData from "@/public/data/homePage/home-horizontalArticle.json";
 import Footer from "@/src/components/Footer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.citizencorrespondent.com"),
+  title: "CitizenCorrespondent – Latest News & Breaking Stories 2025",
+  description: "Stay informed with the latest breaking news, in-depth analysis, and comprehensive coverage of world events, politics, business, technology, health, and more. Your trusted source for reliable journalism.",
+  keywords: [
+    "breaking news",
+    "latest news",
+    "world news",
+    "politics",
+    "business news",
+    "technology news",
+    "health news",
+    "finance news",
+    "global affairs",
+    "citizen correspondent",
+    "news 2025",
+    "current events",
+    "news analysis",
+    "journalism",
+  ].join(", "),
+  openGraph: {
+    title: "CitizenCorrespondent – Latest News & Breaking Stories 2025",
+    description: "Your trusted source for breaking news, in-depth analysis, and comprehensive coverage of world events, politics, business, technology, and more.",
+    url: "https://www.citizencorrespondent.com",
+    siteName: "CitizenCorrespondent",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "CitizenCorrespondent – Latest News & Breaking Stories 2025",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CitizenCorrespondent – Latest News & Breaking Stories 2025",
+    description: "Stay informed with the latest breaking news, in-depth analysis, and comprehensive coverage.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://www.citizencorrespondent.com",
+  },
+};
 
 export default function HomePage() {
   const heroArticle = homeData.hero as HeroArticle;
@@ -40,10 +98,30 @@ export default function HomePage() {
   const horizontalArticle = horizontalArticleData.article as HorizontalArticleCardProps;
 
   return (
-    <div className="bg-white min-h-screen">
-      <DateBar />
-      <MainNav currentPage="home" />
-      <CategoryNav />
+    <>
+      {/* WebSite Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "CitizenCorrespondent",
+            url: "https://www.citizencorrespondent.com",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: "https://www.citizencorrespondent.com/search?q={search_term_string}",
+              "query-input": "required name=search_term_string",
+            },
+          }),
+        }}
+      />
+
+      <div className="bg-white min-h-screen">
+        <div className="hidden">CitizenCorrespondent – Latest News & Breaking Stories 2025</div>
+        <DateBar />
+        <MainNav currentPage="home" />
+        <CategoryNav />
 
       <FeatureHomePart
         hero={heroArticle}
@@ -100,7 +178,7 @@ export default function HomePage() {
       </div>
 
       <Footer />
-    
-    </div>
+      </div>
+    </>
   );
 }

@@ -100,9 +100,18 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const url = `https://www.citizencorrespondent.com/category/${slug}`;
 
   return {
+    metadataBase: new URL("https://www.citizencorrespondent.com"),
     title: `${categoryName} News | CitizenCorrespondent`,
     description: description,
-    keywords: `${categoryName.toLowerCase()} news, ${categoryName.toLowerCase()} 2025, latest news, breaking news`,
+    keywords: [
+      `${categoryName.toLowerCase()} news`,
+      `${categoryName.toLowerCase()} 2025`,
+      "latest news",
+      "breaking news",
+      "citizen correspondent",
+      `${categoryName.toLowerCase()} articles`,
+      `${categoryName.toLowerCase()} updates`,
+    ].join(", "),
     alternates: { canonical: url },
     openGraph: {
       title: `${categoryName} News – Latest Stories 2025 | CitizenCorrespondent`,
@@ -111,13 +120,31 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       siteName: "CitizenCorrespondent",
       type: "website",
       locale: "en_US",
+      images: [
+        {
+          url: "/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: `${categoryName} News – CitizenCorrespondent`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${categoryName} News 2025`,
+      title: `${categoryName} News 2025 | CitizenCorrespondent`,
       description: description,
+      images: ["/og-image.jpg"],
     },
-    robots: { index: true, follow: true },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
   };
 }
 
@@ -162,11 +189,20 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             name: `${categoryName} – CitizenCorrespondent`,
             description: categoryDescription,
             url: `https://www.citizencorrespondent.com/category/${slug}`,
+            publisher: {
+              "@type": "Organization",
+              name: "CitizenCorrespondent",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://www.citizencorrespondent.com/logo.png",
+              },
+            },
           }),
         }}
       />
 
       <div className="bg-white min-h-screen">
+        <div className="hidden">{categoryName} News – Latest Stories 2025</div>
         <DateBar />
         <MainNav currentPage={`category/${slug}`} />
         <CategoryNav />
