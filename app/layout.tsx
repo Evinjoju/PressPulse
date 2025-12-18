@@ -83,6 +83,18 @@ export const metadata: Metadata = {
     google: "your-google-verification-code",
     yandex: "your-yandex-verification-code",
   },
+  icons: {
+    icon: [
+      { url: "/images/cc-favIcon.svg", type: "image/svg+xml" },
+      { url: "/images/cc-favIcon.svg", type: "image/svg+xml", sizes: "any" },
+    ],
+    shortcut: "/images/cc-favIcon.svg",
+    apple: "/images/cc-favIcon.svg",
+    other: {
+      rel: "apple-touch-icon-precomposed",
+      url: "/images/cc-favIcon.svg",
+    },
+  },
 };
 
 export default function RootLayout({

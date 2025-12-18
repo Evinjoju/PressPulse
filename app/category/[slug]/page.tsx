@@ -135,6 +135,11 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       description: description,
       images: ["/og-image.jpg"],
     },
+    icons: {
+      icon: "/images/cc-favIcon.svg",
+      shortcut: "/images/cc-favIcon.svg",
+      apple: "/images/cc-favIcon.svg",
+    },
     robots: {
       index: true,
       follow: true,

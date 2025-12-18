@@ -82,6 +82,11 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       description: description,
       images: [imageUrl],
     },
+    icons: {
+      icon: "/images/cc-favIcon.svg",
+      shortcut: "/images/cc-favIcon.svg",
+      apple: "/images/cc-favIcon.svg",
+    },
     robots: {
       index: true,
       follow: true,

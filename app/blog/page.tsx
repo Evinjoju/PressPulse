@@ -61,6 +61,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.citizencorrespondent.com/blog",
   },
+  icons: {
+    icon: "/images/cc-favIcon.svg",
+    shortcut: "/images/cc-favIcon.svg",
+    apple: "/images/cc-favIcon.svg",
+  },
 };
 
 export default function BlogPage() {

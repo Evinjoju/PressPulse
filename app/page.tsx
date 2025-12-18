@@ -102,6 +102,11 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  icons: {
+    icon: "/images/cc-favIcon.svg",
+    shortcut: "/images/cc-favIcon.svg",
+    apple: "/images/cc-favIcon.svg",
+  },
   twitter: {
     card: "summary_large_image",
     title: "CitizenCorrespondent – Latest News & Breaking Stories 2025",
