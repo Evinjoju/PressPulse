@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     default: "CitizenCorrespondent – Latest News & Breaking Stories 2025",
     template: "%s | CitizenCorrespondent",
   },
-  description: "Stay instantly connected with breaking stories and live updates. From politics and technology to entertainment and beyond, we provide real-time coverage you can rely on. Your trusted source for reliable journalism.",
+  description: "Breaking news, analysis & coverage of world events, politics, business, technology & health. Your trusted source for reliable journalism in 2025.",
   keywords: [
     "breaking news",
     "latest news",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     url: "https://www.citizencorrespondent.com",
     siteName: "CitizenCorrespondent",
     title: "CitizenCorrespondent – Latest News & Breaking Stories 2025",
-    description: "Stay instantly connected with breaking stories and live updates. From politics and technology to entertainment and beyond, we provide real-time coverage you can rely on.",
+    description: "Breaking news, analysis & coverage of world events, politics, business, technology & health. Trusted journalism in 2025.",
     images: [
       {
         url: "/og-image.jpg",

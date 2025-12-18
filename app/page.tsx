@@ -29,7 +29,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.citizencorrespondent.com"),
   title: "CitizenCorrespondent – Latest News & Breaking Stories 2025",
-  description: "Stay informed with the latest breaking news, in-depth analysis, and comprehensive coverage of world events, politics, business, technology, health, and more. Your trusted source for reliable journalism.",
+  description: "Breaking news, analysis & coverage of world events, politics, business, technology & health. Your trusted source for reliable journalism in 2025.",
   keywords: [
     "breaking news",
     "latest news",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   ].join(", "),
   openGraph: {
     title: "CitizenCorrespondent – Latest News & Breaking Stories 2025",
-    description: "Your trusted source for breaking news, in-depth analysis, and comprehensive coverage of world events, politics, business, technology, and more.",
+    description: "Breaking news, analysis & coverage of world events, politics, business, technology & health. Trusted journalism in 2025.",
     url: "https://www.citizencorrespondent.com",
     siteName: "CitizenCorrespondent",
     images: [
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "CitizenCorrespondent – Latest News & Breaking Stories 2025",
-    description: "Stay informed with the latest breaking news, in-depth analysis, and comprehensive coverage.",
+    description: "Breaking news, in-depth analysis & comprehensive coverage of world events, politics, business, technology & health. Trusted journalism in 2025.",
     images: ["/og-image.jpg"],
   },
   robots: {
