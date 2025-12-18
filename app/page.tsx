@@ -14,55 +14,38 @@ import { MainGridItem } from "@/src/components/MainGrid";
 import homeData from "@/public/data/homePage/home-featureHomepart.json";
 import mainGridData from "@/public/data/homePage/home-mainGrid.json";
 
-// Critical above-the-fold components - load immediately but with deferred hydration
-const DateBar = dynamic(() => import("@/src/components/DateBar"), {
-  ssr: true,
-});
+// Critical above-the-fold components - load immediately
+const DateBar = dynamic(() => import("@/src/components/DateBar"));
+const MainNav = dynamic(() => import("@/src/components/MainNav"));
+const CategoryNav = dynamic(() => import("@/src/components/CategoryNav"));
+const FeatureHomePart = dynamic(() => import("@/src/components/FeatureHomePart"));
 
-const MainNav = dynamic(() => import("@/src/components/MainNav"), {
-  ssr: true,
-});
-
-const CategoryNav = dynamic(() => import("@/src/components/CategoryNav"), {
-  ssr: true,
-});
-
-const FeatureHomePart = dynamic(() => import("@/src/components/FeatureHomePart"), {
-  ssr: true,
-});
-
-// Lazy load below-the-fold components with no SSR to reduce initial bundle
+// Lazy load below-the-fold components for code splitting
 const MainGrid = dynamic(() => import("@/src/components/MainGrid"), {
-  ssr: true,
+  loading: () => <div className="h-64 animate-pulse bg-gray-100" />,
 });
 
 const MainGridLazy = dynamic(() => import("@/src/components/MainGrid"), {
-  ssr: false,
   loading: () => <div className="h-64 animate-pulse bg-gray-100" />,
 });
 
 const FeatureCategoryPart = dynamic(() => import("@/src/components/FeatureCategoryPart"), {
-  ssr: false,
   loading: () => <div className="h-96 animate-pulse bg-gray-100" />,
 });
 
 const BigAddBanner = dynamic(() => import("@/src/components/BigAddBanner"), {
-  ssr: false,
   loading: () => <div className="h-32 animate-pulse bg-gray-100" />,
 });
 
 const HorizontalArticleCard = dynamic(() => import("@/src/components/HorizontalArticleCard"), {
-  ssr: false,
   loading: () => <div className="h-64 animate-pulse bg-gray-100" />,
 });
 
 const OverlayArticleGrid = dynamic(() => import("@/src/components/OverlayArticleGrid"), {
-  ssr: false,
   loading: () => <div className="h-96 animate-pulse bg-gray-100" />,
 });
 
 const Footer = dynamic(() => import("@/src/components/Footer"), {
-  ssr: false,
   loading: () => <div className="h-64 animate-pulse bg-gray-100" />,
 });
 
