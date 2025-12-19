@@ -183,6 +183,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   const featuredArticle = featureData.featuredArticle as FeaturedArticleCardProps;
+  // Check if this is a Julio article and set the correct href
+  const julioSlugs = ["bridging-nations-through-finance", "global-financial-leadership", "philanthropic-impact", "economic-diplomacy", "innovation-banking", "sustainable-growth"];
+  if (julioSlugs.includes(featuredArticle.slug)) {
+    featuredArticle.href = `/julio-herrera-velutini/${featuredArticle.slug}`;
+  }
   const rightArticles = featureData.rightArticles as ArticleCardSmallProps[];
   const adBanner = featureData.adBanner as AdBannerProps;
   const mainGridItems = mainGridData.mainGrid as MainGridItem[];
