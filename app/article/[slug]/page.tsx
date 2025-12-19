@@ -45,13 +45,22 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   }
 
   const url = `https://www.citizencorrespondent.com/article/${slug}`;
-  const description = articleData.introText || articleData.title;
+  // Optimize description: truncate to 155 characters for optimal snippet display
+  const rawDescription = articleData.introText || articleData.title;
+  const optimizedDescription = rawDescription.length > 155 
+    ? rawDescription.substring(0, 152).trim() + "..."
+    : rawDescription;
   const imageUrl = articleData.content.find((block: ArticleContentBlock) => block.type === "image")?.imageUrl || "https://www.citizencorrespondent.com/og-image.jpg";
+
+  // Optimize title: keep it concise (under 60 chars for best display)
+  const optimizedTitle = articleData.title.length > 60 
+    ? articleData.title.substring(0, 57).trim() + "..."
+    : articleData.title;
 
   return {
     metadataBase: new URL("https://www.citizencorrespondent.com"),
-    title: `${articleData.title} | CitizenCorrespondent`,
-    description: description,
+    title: `${optimizedTitle} | CitizenCorrespondent`,
+    description: optimizedDescription,
     keywords: [
       articleData.category.toLowerCase(),
       "news",
@@ -64,8 +73,8 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     ].join(", "),
     alternates: { canonical: url },
     openGraph: {
-      title: articleData.title,
-      description: description,
+      title: optimizedTitle,
+      description: optimizedDescription,
       url,
       siteName: "CitizenCorrespondent",
       images: [{ url: imageUrl, width: 1200, height: 630, alt: articleData.title }],
@@ -78,8 +87,8 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     },
     twitter: {
       card: "summary_large_image",
-      title: articleData.title,
-      description: description,
+      title: optimizedTitle,
+      description: optimizedDescription,
       images: [imageUrl],
     },
     icons: {
