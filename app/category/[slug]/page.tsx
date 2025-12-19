@@ -36,19 +36,19 @@ const slugToCategory: Record<string, string> = {
 
 // Category descriptions
 const categoryDescriptions: Record<string, string> = {
-  world: "Stay informed with the latest global news, international affairs, and world events. Our comprehensive coverage brings you breaking news, in-depth analysis, and expert perspectives on issues that shape our world.",
-  business: "Get the latest business news, market updates, and industry insights. From startups to Fortune 500 companies, we cover the stories that matter to entrepreneurs, investors, and business leaders.",
-  finance: "Stay ahead with financial news, market trends, and investment insights. Our coverage includes stock markets, cryptocurrencies, personal finance, and economic analysis to help you make informed decisions.",
-  politics: "Comprehensive political coverage including elections, policy changes, and government affairs. Get unbiased reporting and analysis on local, national, and international politics.",
-  opinion: "Our seasoned columnists and guest writers offer insightful perspectives, thought-provoking opinions, and in-depth analysis on the most pressing issues of the day. From politics and policy to culture and society, our editorials aim to spark meaningful conversations and provide a platform for diverse voices and viewpoints.",
-  education: "Explore the latest developments in education, from K-12 to higher education. Coverage includes policy changes, innovative teaching methods, student achievements, and the future of learning.",
-  "global-affairs": "In-depth coverage of international relations, diplomacy, and global events. Stay informed about how nations interact, cooperate, and address shared challenges on the world stage.",
-  featured: "Discover our handpicked selection of top stories, exclusive interviews, and must-read articles. Our featured content represents the best of our journalism and the most important stories of the moment.",
-  "renewable-energy": "Stay updated on the latest developments in renewable energy, sustainable technology, and green initiatives. Coverage includes solar, wind, hydroelectric, and other clean energy solutions shaping our future.",
-  "climate-change": "Comprehensive coverage of climate science, environmental policy, and sustainability efforts. Stay informed about the latest research, climate action, and solutions to address global warming.",
-  hot: "Breaking news and trending stories that everyone's talking about. Get the latest updates on viral topics, social media trends, and stories capturing global attention.",
-  research: "Explore groundbreaking research, scientific discoveries, and academic studies across all fields. From medicine to technology, stay informed about the latest findings that shape our understanding of the world.",
-  health: "Your source for health news, medical breakthroughs, wellness tips, and healthcare policy. Stay informed about public health, medical research, and tips for living a healthy lifestyle.",
+  world: "Latest global news, international affairs, and world events. Breaking news, analysis, and expert perspectives on issues shaping our world in 2025.",
+  business: "Latest business news, market updates, and industry insights. Coverage of startups, Fortune 500 companies, and stories for entrepreneurs and investors.",
+  finance: "Financial news, market trends, and investment insights. Stock markets, cryptocurrencies, personal finance, and economic analysis for informed decisions.",
+  politics: "Political coverage including elections, policy changes, and government affairs. Unbiased reporting on local, national, and international politics 2025.",
+  opinion: "Insightful perspectives and thought-provoking opinions from columnists. Analysis on politics, policy, culture, and society's pressing issues.",
+  education: "Latest education developments from K-12 to higher education. Policy changes, innovative teaching methods, student achievements, and learning's future.",
+  "global-affairs": "In-depth coverage of international relations, diplomacy, and global events. How nations interact, cooperate, and address shared challenges.",
+  featured: "Handpicked top stories, exclusive interviews, and must-read articles. The best of our journalism and the most important stories of 2025.",
+  "renewable-energy": "Latest renewable energy developments, sustainable technology, and green initiatives. Solar, wind, hydroelectric, and clean energy solutions 2025.",
+  "climate-change": "Climate science, environmental policy, and sustainability coverage. Latest research, climate action, and solutions to address global warming.",
+  hot: "Breaking news and trending stories everyone's talking about. Latest updates on viral topics, social media trends, and stories capturing global attention.",
+  research: "Groundbreaking research, scientific discoveries, and academic studies. Latest findings in medicine, technology, and science shaping our world 2025.",
+  health: "Health news, medical breakthroughs, wellness tips, and healthcare policy. Public health updates, medical research, and healthy lifestyle guidance.",
 };
 
 // All available categories for related topics
@@ -99,10 +99,15 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
   const url = `https://www.citizencorrespondent.com/category/${slug}`;
 
+  // Optimize description: truncate to 155 characters for optimal snippet display
+  const optimizedDescription = description.length > 155 
+    ? description.substring(0, 152).trim() + "..."
+    : description;
+
   return {
     metadataBase: new URL("https://www.citizencorrespondent.com"),
     title: `${categoryName} News | CitizenCorrespondent`,
-    description: description,
+    description: optimizedDescription,
     keywords: [
       `${categoryName.toLowerCase()} news`,
       `${categoryName.toLowerCase()} 2025`,
@@ -115,7 +120,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     alternates: { canonical: url },
     openGraph: {
       title: `${categoryName} News – Latest Stories 2025 | CitizenCorrespondent`,
-      description: description,
+      description: optimizedDescription,
       url,
       siteName: "CitizenCorrespondent",
       type: "website",
@@ -132,7 +137,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     twitter: {
       card: "summary_large_image",
       title: `${categoryName} News 2025 | CitizenCorrespondent`,
-      description: description,
+      description: optimizedDescription,
       images: ["/og-image.jpg"],
     },
     icons: {
