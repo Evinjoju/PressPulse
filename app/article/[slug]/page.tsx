@@ -52,14 +52,16 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     : rawDescription;
   const imageUrl = articleData.content.find((block: ArticleContentBlock) => block.type === "image")?.imageUrl || "https://www.citizencorrespondent.com/og-image.jpg";
 
-  // Optimize title: keep it concise (under 60 chars for best display)
-  const optimizedTitle = articleData.title.length > 60 
-    ? articleData.title.substring(0, 57).trim() + "..."
+  // Optimize title: keep base title under 50 chars, then add site name (total ~72 chars max)
+  // Search engines typically show 50-60 chars, so we keep it concise
+  const baseTitle = articleData.title.length > 50 
+    ? articleData.title.substring(0, 47).trim() + "..."
     : articleData.title;
+  const optimizedTitle = `${baseTitle} | CitizenCorrespondent`;
 
   return {
     metadataBase: new URL("https://www.citizencorrespondent.com"),
-    title: `${optimizedTitle} | CitizenCorrespondent`,
+    title: optimizedTitle,
     description: optimizedDescription,
     keywords: [
       articleData.category.toLowerCase(),
@@ -73,7 +75,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     ].join(", "),
     alternates: { canonical: url },
     openGraph: {
-      title: optimizedTitle,
+      title: baseTitle,
       description: optimizedDescription,
       url,
       siteName: "CitizenCorrespondent",
@@ -87,7 +89,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     },
     twitter: {
       card: "summary_large_image",
-      title: optimizedTitle,
+      title: baseTitle,
       description: optimizedDescription,
       images: [imageUrl],
     },
