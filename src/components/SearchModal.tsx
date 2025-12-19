@@ -78,9 +78,9 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
       className="fixed inset-0 flex backdrop-blur items-center justify-center z-50 p-4 transition-all duration-300 ease-in-out opacity-100 visible"
       onClick={handleOverlayClick}
     >
-      <div className="w-full max-w-md sm:max-w-lg bg-black border-2 border-gray-700 transition-all duration-300 ease-in-out transform opacity-100 translate-y-0 scale-100">
+      <div className="w-full max-w-md sm:max-w-lg bg-black border-2 border-gray-700 rounded-3xl transition-all duration-300 ease-in-out transform opacity-100 translate-y-0 scale-100">
         {/* Search Input */}
-        <div className="w-full bg-black border-2 border-gray-900 overflow-hidden flex items-center">
+        <div className="w-full bg-black border-2 border-gray-900 rounded-3xl overflow-hidden flex items-center">
           <form className="flex w-full" onSubmit={(e) => e.preventDefault()}>
             <input
               ref={inputRef}
